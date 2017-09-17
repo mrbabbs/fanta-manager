@@ -27,7 +27,7 @@
     const data = {
       regulars: extractRegulars(container),
       substitutions: extractSubstitutions(container),
-      updateDate: Utils.getCurrentTimestamp()
+      updateDate: Utils.getCurrentTimestamp(),
     }
   }
 
