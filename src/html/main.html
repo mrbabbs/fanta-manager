@@ -6,15 +6,55 @@
 
   <body>
     <div class="container">
-      <ul class="nav flex-column nav-pills nav-fill">
-        <li class="nav-item">
-          <button class="btn">Gazzetta</button>
-        </li>
+      <form id="myTeam">
+        <div class="row">
+          <div class="col">
+            <h4>My Team</h4>
+            <hr/>
+          </div>
+        </div>
 
-        <li class="nav-item">
-          <button class="btn">Fantagazzetta</button>
-        </li>
-      </ul>
+        <div class="row">
+          <div class="col-6">
+            <h6>Name</h6>
+          </div>
+          <div class="col">
+            <h6>Price</h6>
+          </div>
+          <div class="col">
+            <h6>Mark</h6>
+          </div>
+          <div class="col">
+            <h6>Mark F</h6>
+          </div>
+        </div>
+
+        <div id="goalkeepers" class="form-group">
+          <div class="players">
+          </div>
+        </div>
+        <div id="defensers" class="form-group">
+          <div class="players">
+          </div>
+        </div>
+        <div id="middlefielders" class="form-group">
+          <div class="players">
+          </div>
+        </div>
+        <div id="strikers" class="form-group">
+          <div class="players">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </div>
+      </form>
     </div>
+
+    <script src="/assets/js/lodash.min.js"></script>
+    <script src="/src/js/utils.js"></script>
+    <script src="/src/js/main.js"></script>
   </body>
 </html>

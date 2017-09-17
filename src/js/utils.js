@@ -1,4 +1,5 @@
 window.Utils = (function () {
+  const STORE = 'store';
   const log = _.curry((type, x) => { console.log(type, x); return x; });
   const getContainer = selector => document.querySelector(selector);
   const extractText = node => node.textContent;
@@ -8,15 +9,21 @@ window.Utils = (function () {
   const toLowerCase = str => `${str}`.toLowerCase();
   const getCurrentTimestamp = () => Date.now();
   const NOOP = () => {};
+  const fp = _.noConflict();
+  const querySelector =
+    _.curry((selector, node) => node.querySelector(selector));
+  const querySelectorAll =
+    _.curry((selector, node) => node.querySelectorAll(selector));
+  const value = node => node.value;
 
   function save(key, value, callback) {
     const cb = callback || NOOP;
-    chrome.local.set(key, value, cb);
+    chrome.storage.local.set(key, value, cb);
   }
 
   function load(key, callback) {
     const cb = callback || NOOP;
-    chrome.local.get(key, cb);
+    chrome.storage.local.get(key, cb);
   }
 
   return {
@@ -30,5 +37,9 @@ window.Utils = (function () {
     save,
     load,
     NOOP,
+    fp,
+    querySelector,
+    querySelectorAll,
+    value,
   };
 })();
