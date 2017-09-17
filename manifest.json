@@ -6,14 +6,26 @@
   "version": "0.0.1",
 
   "browser_action": {
-    "default_icon": "assets/images/browser-icon.png",
-    "default_popup": "src/html/popup.html"
+    "default_icon": "assets/images/browser-icon.png"
+  },
+
+  "background": {
+    "scripts": [
+      "src/js/event-page.js",
+      "assets/js/lodash.min.js",
+      "src/js/utils.js"
+    ],
+    "persistent": false
   },
 
   "content_scripts": [
     {
       "matches": ["*://www.gazzetta.it/*/prob_form*"],
-      "js": ["assets/js/lodash.min.js","src/js/utils.js", "src/js/gazzetta.js"],
+      "js": [
+        "assets/js/lodash.min.js",
+        "src/js/utils.js",
+        "src/js/gazzetta.js"
+      ],
       "run_at": "document_end"
     }
   ],
