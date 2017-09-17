@@ -1,44 +1,35 @@
 (function () {
-  function normalize(str) {
-    return str.replace(/[\u00A0\u1680​\u180e\u2000-\u2009\u200a​\u200b​\u202f\u205f​\u3000]/g,' ')
-  }
-  function extractRegulars() {
-    const list = document.querySelectorAll('.team-players li .team-player');
-    const names= [];
+  const CONTAINER_SELECTOR = '.probabiliFormazioni';
+  const REGULARS_SELECTOR = '.team-players li .team-player';
+  const SUBSTITUTIONS_HOME_SELECTOR = '.homeDetails>p';
+  const SUBSTITUTIONS_AWAY_SELECTOR = '.awayDetails>p';
 
-    list.forEach(el => names.push(el.textContent.trim().toLowerCase()));
+  const extractRegulars = _.compose(
+    Utils.toLowerCase,
+    _.map(Utils.normalize),
+    _.map(Utils.extractText),
+    Utils.getDOMElements(REGULARS_SELECTOR),
+  );
+  const getSubstitutions = container => _.concat(
+    Array.from(Utils.getDOMElements(SUBSTITUTIONS_HOME_SELECTOR, container)),
+    Array.from(Utils.getDOMElements(SUBSTITUTIONS_AWAY_SELECTOR, container)),
+  );
 
-    return names;
-  }
-
-  function extractSubstitutions() {
-    const listHome = document.querySelectorAll('.homeDetails p')[0].textContent.split(',');
-    const listAway = document.querySelectorAll('.awayDetails p')[0].textContent.split(',');
-    const names = [];
-    const extractName = (name) => normalize(name).match(/[0-9]+\ ([A-Z\ -]+)/);
-
-    listHome.forEach(el => names.push(extractName));
-
-    return names;
-  }
-
-  function extractIndecisions() {
-
-  }
-
-  function extractNotAvailable() {
-
-  }
+  const extractSubstitutions = _.compose(
+    Utils.toLowerCase,
+    _.map(Utils.normalize),
+    _.map(Utils.extractText),
+    getSubstitutions,
+  );
 
   function init() {
+    const container = Utils.getContainer(CONTAINER_SELECTOR);
     const data = {
-      regulars: extractRegulars(),
-      substitutions: extractSubstitutions(),
+      regulars: extractRegulars(container),
+      substitutions: extractSubstitutions(container),
+      updateDate: Utils.getCurrentTimestamp()
     }
-
-    console.log(data);
   }
 
   init();
-
 })();
