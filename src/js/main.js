@@ -21,7 +21,7 @@
   function playerField(player, editable) {
     return `
     <div class="row form-group player" id="player-${player.number}">
-      <div class="col-6">
+      <div class="col-xs-6">
         <div class="input-group">
           <span class="input-group-addon" id="sizing-addon2">
             ${player.position}
@@ -33,17 +33,17 @@
         </div>
       </div>
 
-      <div class="col">
+      <div class="col-xs-2">
         <input type="text" class="form-control price" value="${player.price}"
           "${editable ? 'disabled' : ''}">
       </div>
 
-      <div class="col">
+      <div class="col-xs-2">
         <input type="text" class="form-control mark" value="${player.mark}"
           disabled>
       </div>
 
-      <div class="col">
+      <div class="col-xs-2">
         <input type="text" class="form-control mark-f"
           value="${player.markF}" disabled>
       </div>
